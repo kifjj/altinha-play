@@ -1,0 +1,5 @@
+# Exclude videos folders
+videos/
+
+# Exclude data folders
+data/
