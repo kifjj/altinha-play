@@ -20,7 +20,8 @@ import cv2
 
 
 def extract_frames(
-    video_path: str | os.PathLike[str], output_folder: str | os.PathLike[str]
+    video_path: str | os.PathLike[str],
+    output_folder: str | os.PathLike[str]
 ) -> int:
     """
     Extract all frames from a video and save them to the output folder.
