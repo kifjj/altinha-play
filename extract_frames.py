@@ -11,13 +11,17 @@
 # ///
 
 
-import cv2
-import os
 import argparse
+import os
 from pathlib import Path
+from typing import Final
+
+import cv2
 
 
-def extract_frames(video_path, output_folder):
+def extract_frames(
+    video_path: str | os.PathLike[str], output_folder: str | os.PathLike[str]
+) -> int:
     """
     Extract all frames from a video and save them to the output folder.
     
@@ -33,15 +37,15 @@ def extract_frames(video_path, output_folder):
     output_path.mkdir(parents=True, exist_ok=True)
     
     # Open the video file
-    video = cv2.VideoCapture(video_path)
+    video = cv2.VideoCapture(str(video_path))
     
     if not video.isOpened():
         print(f"Error: Could not open video file '{video_path}'")
         return -1
     
     # Get video properties
-    total_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
-    fps = video.get(cv2.CAP_PROP_FPS)
+    total_frames: Final[int] = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+    fps: Final[float] = float(video.get(cv2.CAP_PROP_FPS))
     
     print(f"Video: {video_path}")
     print(f"Total frames: {total_frames}")
@@ -49,7 +53,7 @@ def extract_frames(video_path, output_folder):
     print(f"Output folder: {output_folder}")
     print("-" * 50)
     
-    frame_count = 0
+    frame_count: int = 0
     
     while True:
         # Read the next frame
@@ -60,8 +64,8 @@ def extract_frames(video_path, output_folder):
         
         # Generate output filename with zero-padded frame number
         # e.g., frame_00001.jpg, frame_00002.jpg, etc.
-        frame_filename = f"frame_{frame_count:05d}.jpg"
-        frame_path = output_path / frame_filename
+        frame_filename: str = f"frame_{frame_count:05d}.jpg"
+        frame_path: Path = output_path / frame_filename
         
         # Save the frame
         cv2.imwrite(str(frame_path), frame)
@@ -79,7 +83,7 @@ def extract_frames(video_path, output_folder):
     return frame_count
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract all frames from a video file and save them as images."
     )
