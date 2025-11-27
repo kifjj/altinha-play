@@ -3,14 +3,14 @@
 This is POC project that applies computer vision model to the sport of Altinha.
 Most of the code is written by Cursor (Sonnet 4.5) over a period of 3 rainy days.
 
-The code was fine tuned in Colab and as the free credit finishe I used Kaggle.
+The the model YOLO 11 was fine tuned in Colab and Kaggle.
 
 1. The first increment: count the number of passes.
 2. The second increment: count Head passes and Foot passes.
 
 Some challenges:
 
-- YOLO 11 didn't track properly the ball, I finetunes it with 150 pics annotated in Roboflow.
+- YOLO 11 didn't track properly the ball, I fine tuned it with 150 pics annotated in Roboflow.
   As this is a POC, the 150 pics were sampled from a single video with yelllow ball,sandy beach and palms therefore it doesn't work well for different ball colors and environment
 
 - Cursor applied a tracking logic to the ball which didn't work well for Altinha (most ball boxes were lost).
@@ -35,7 +35,7 @@ Next steps:
 - Improve accuracy when occlusion occurs
 - Improve player detection accuracy (test with different cam angles, models)
 - Consider a machine learning logic that needs to be trained ad-hoc for the specific cases
-- Count other body part hits 
+- Count other body part hits (shoulder, chest, knee, heel)
 
 
 
